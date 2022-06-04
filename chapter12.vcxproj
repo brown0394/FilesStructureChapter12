@@ -27,22 +27,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -109,12 +109,19 @@
     <ClCompile Include="Iobuffer.cpp" />
     <ClCompile Include="Length.cpp" />
     <ClCompile Include="recording.cpp" />
-    <ClCompile Include="testhash.cpp" />
+    <ClCompile Include="testhash.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="textind.cpp" />
     <ClCompile Include="tindbuff.cpp" />
     <ClCompile Include="Varlen.cpp" />
+    <ClCompile Include="z-exerciseHashFile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="btnode.h" />
+    <ClInclude Include="btnode.hpp" />
+    <ClInclude Include="btree.h" />
+    <ClInclude Include="btree.hpp" />
     <ClInclude Include="bucket.h" />
     <ClInclude Include="Buffile.h" />
     <ClInclude Include="direct.h" />
@@ -127,6 +134,8 @@
     <ClInclude Include="Length.h" />
     <ClInclude Include="recfile.h" />
     <ClInclude Include="recording.h" />
+    <ClInclude Include="simpind.h" />
+    <ClInclude Include="simpind.hpp" />
     <ClInclude Include="textind.h" />
     <ClInclude Include="tindbuff.h" />
     <ClInclude Include="Varlen.h" />

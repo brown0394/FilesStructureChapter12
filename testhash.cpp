@@ -48,7 +48,6 @@ int main(int argc, char ** argv)
 	char removeKey[15], searchKey[15];
 	Directory Dir(4);
 	resultIndex = Dir.Create("tsthash");
-	Recording record;
 	FixedFieldBuffer Buffer(10);
 	Buffer.InitFields(); // Add each field size of record to buffer (can change if you need)
 	RecordFile<Recording> DataFile(Buffer);
@@ -73,6 +72,7 @@ int main(int argc, char ** argv)
 	R[8] = new Recording("EG", "139201", "Violin Concerto", "Beethoven", "Ferras");
 	R[9] = new Recording("FF", "245", "Good News", "Sweet Honey in the Rock", "Sweet Honey in the Rock");
 	int recaddr;
+	Recording rec;
 	while (1)
 	{
 		cout << "\nSelect command 1: insert record set, 2. delete a record, 3. print the record set, 4. search the record with key, 5. Quit => ";
@@ -88,7 +88,7 @@ int main(int argc, char ** argv)
 				recaddr = DataFile.Write(*R[i]);
 				cout << "DataFile R[" << i << "] at recaddr " << recaddr << endl;
 				char *keys = R[i]->Key();
-				cout << "Inserting with key = " << k << endl;
+				cout << "Inserting with key = " << keys << endl;
 				//1 block = 4 records
 				delete R[i];
 				cout << (void *)Hash(keys);//(void*) castingÀº bit string
@@ -96,11 +96,13 @@ int main(int argc, char ** argv)
 				resultIndex = Dir.Insert(keys, recaddr);
 				if (resultIndex == 0) cout << "Insert for " << keys[i] << " failed" << endl;
 				Dir.Print(cout);
+				putchar('\n');
 			}
 			Dir.Close();
 			DataFile.Close();
 			break;
 		case 2://2. delete a record
+		{
 			resultFile = DataFile.Open("datafile.dat", ios::in | ios::out);
 			if (!resultFile)
 			{
@@ -118,31 +120,35 @@ int main(int argc, char ** argv)
 
 			cout << endl << endl << removeKey << "  " << (void*)MakeAddress(removeKey, 16) << endl << endl;
 			recaddr = Dir.Search(removeKey);
-			DataFile.Read(*rec, recaddr);
-			//update *rec
-			DataFile.Write(*rec, recaddr);//update mark on key field
+			DataFile.Read(rec, recaddr);
+			DataFile.Write(rec, recaddr);//update mark on key field
 			resultIndex = Dir.Remove(removeKey);
 			if (resultIndex == 0) cout << "Remove for " << removeKey << " failed" << endl;
 			Dir.Print(cout);
 			DataFile.Close();
 			Dir.Close();
 			break;
+		}
 		case 3://3. print the record set
+		{
 			resultFile = DataFile.Open("datafile.dat", ios::in | ios::out);
 			if (!resultFile)
 			{
 				cout << "Unable to open data file" << endl;
 				return 0;
 			}
-			Recording *rec;
+			DataFile.Rewind();
 			for (int i = 0; i < 10; i++)
 			{
-				rec = new Recording;
-				DataFile.Read(*rec, recaddr);
-				rec->Print(cout);
+				DataFile.Read(rec);
+				rec.Print(cout);
+				putchar('\n');
 			}
 			DataFile.Close();
+			break;
+		}
 		case 4://4. print the record with key
+		{
 			resultFile = DataFile.Open("datafile.dat", ios::in | ios::out);
 			if (!resultFile)
 			{
@@ -167,13 +173,16 @@ int main(int argc, char ** argv)
 				cout << "RecAddr : " << recaddr << endl;
 			}
 
-			DataFile.Read(*rec, recaddr);
+			DataFile.Read(rec, recaddr);
 			cout << rec;
 			DataFile.Close();
 			Dir.Close();
-		default:
+			break;
+		}
+		default:{
 			exit(0);
 			break;
+		}
 		}
 	}
 	system("pause");

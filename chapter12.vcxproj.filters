@@ -60,6 +60,9 @@
     <ClCompile Include="Varlen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="z-exerciseHashFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bucket.h">
@@ -106,6 +109,24 @@
     </ClInclude>
     <ClInclude Include="Varlen.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="simpind.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="simpind.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="btree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="btree.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="btnode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="btnode.hpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
