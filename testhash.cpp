@@ -121,6 +121,7 @@ int main(int argc, char ** argv)
 			cout << endl << endl << removeKey << "  " << (void*)MakeAddress(removeKey, 16) << endl << endl;
 			recaddr = Dir.Search(removeKey);
 			DataFile.Read(rec, recaddr);
+			//update record;
 			DataFile.Write(rec, recaddr);//update mark on key field
 			resultIndex = Dir.Remove(removeKey);
 			if (resultIndex == 0) cout << "Remove for " << removeKey << " failed" << endl;
