@@ -63,6 +63,15 @@
     <ClCompile Include="z-exerciseHashFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="z_assignment_chapter12.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CourseRegistration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="student.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bucket.h">
@@ -127,6 +136,12 @@
     </ClInclude>
     <ClInclude Include="btnode.hpp">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CourseRegistration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="student.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

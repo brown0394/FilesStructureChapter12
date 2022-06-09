@@ -100,6 +100,7 @@
   <ItemGroup>
     <ClCompile Include="bucket.cpp" />
     <ClCompile Include="Buffile.cpp" />
+    <ClCompile Include="CourseRegistration.cpp" />
     <ClCompile Include="direct.cpp" />
     <ClCompile Include="Fixfld.cpp" />
     <ClCompile Include="Fixlen.cpp" />
@@ -109,13 +110,17 @@
     <ClCompile Include="Iobuffer.cpp" />
     <ClCompile Include="Length.cpp" />
     <ClCompile Include="recording.cpp" />
+    <ClCompile Include="student.cpp" />
     <ClCompile Include="testhash.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="textind.cpp" />
     <ClCompile Include="tindbuff.cpp" />
     <ClCompile Include="Varlen.cpp" />
-    <ClCompile Include="z-exerciseHashFile.cpp" />
+    <ClCompile Include="z-exerciseHashFile.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="z_assignment_chapter12.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="btnode.h" />
@@ -124,6 +129,7 @@
     <ClInclude Include="btree.hpp" />
     <ClInclude Include="bucket.h" />
     <ClInclude Include="Buffile.h" />
+    <ClInclude Include="CourseRegistration.h" />
     <ClInclude Include="direct.h" />
     <ClInclude Include="Fixfld.h" />
     <ClInclude Include="Fixlen.h" />
@@ -136,6 +142,7 @@
     <ClInclude Include="recording.h" />
     <ClInclude Include="simpind.h" />
     <ClInclude Include="simpind.hpp" />
+    <ClInclude Include="student.h" />
     <ClInclude Include="textind.h" />
     <ClInclude Include="tindbuff.h" />
     <ClInclude Include="Varlen.h" />
