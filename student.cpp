@@ -62,23 +62,6 @@ std::ostream& operator << (std::ostream& stream, const Student& student) {
 	return stream;
 }
 
-/*
-void setStudentStream (std::istream& stream, Student& student)
-{
-	char delim = '|';
-	char buffer[31];
-	stream.getline(buffer, 30, delim);
-	student.setId(buffer);
-	stream.getline(buffer, 30, delim);
-	student.setName(buffer);
-	stream.getline(buffer, 30, delim);
-	student.setAddress(buffer);
-	stream.getline(buffer, 30, delim);
-	student.setDate(buffer);
-	stream.getline(buffer, 30, delim);
-	student.setCredit(atoi(buffer));
-}*/
-
 std::istream& operator >> (std::istream& stream, Student& student) {
 	char buffer[14]{'\0'};
 	std::cout << "Enter student id, or <cr> to end: " << std::flush;
@@ -108,9 +91,9 @@ int Student::InitBuffer(FixedFieldBuffer& Buffer)
 // initialize a FixedTextBuffer to be used for Student
 {
 	int result;
-	result = Buffer.AddField(SIDMAX); //SId
-	result = result && Buffer.AddField(SNAMEMAX); //SName
-	result = result && Buffer.AddField(DEPTMAX); //Dept
+	result = Buffer.AddField(SIDMAX-1); //SId
+	result = result && Buffer.AddField(SNAMEMAX-1); //SName
+	result = result && Buffer.AddField(DEPTMAX-1); //Dept
 	result = result && Buffer.AddField(1);//SYear
 	return result;
 }
@@ -139,7 +122,7 @@ int Student::Pack(IOBuffer& Buffer) const
 	numBytes = Buffer.Pack(Dept);
 	if (numBytes == -1) return FALSE;
 	char year[2]{ "0" };
-	year[0] += '0';
+	year[0] = '0' + this->SYear;
 	numBytes = Buffer.Pack(year);
 	if (numBytes == -1) return FALSE;
 	return TRUE;

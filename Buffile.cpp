@@ -42,10 +42,10 @@ int BufferFile::Create(char * filename, int mode)
 
 	File.clear();
 
-	File.open(filename, ios::out | ios::binary); // create file;
-	File.close();
+	//File.open(filename, ios::out | ios::binary); // create file;
+	//File.close();
 
-	File.open(filename, mode | ios::binary );
+	File.open(filename, mode | ios::trunc | ios::binary );
 
 	if (!File.good())
 	{

@@ -31,7 +31,7 @@ int FixedLengthBuffer::Read(istream & stream)
 	Clear();
 	Packing = FALSE;
 	stream.read(Buffer, BufferSize);
-	if (!stream.good()) { stream.clear(); return recaddr; }
+	if (!stream.good()) { stream.clear(); return -1; }
 	return recaddr;
 }
 

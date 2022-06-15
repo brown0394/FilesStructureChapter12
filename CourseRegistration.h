@@ -28,7 +28,7 @@ public:
 
 	CourseRegistration& operator =(const CourseRegistration&);
 	void setStudentId(const char*);
-	char* getStudentId();
+	char* getId();
 	void setGrade(float);
 	float getGrade();
 	void setCourseName(const char* courseName);

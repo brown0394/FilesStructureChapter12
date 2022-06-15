@@ -8,8 +8,8 @@
 #include "iobuffer.h"
 #include "length.h"
 #define SIDMAX 5
-#define SNAMEMAX 14
-#define DEPTMAX 10
+#define SNAMEMAX 17
+#define DEPTMAX 14
 
 class Student
 {

@@ -31,7 +31,7 @@ CourseRegistration& CourseRegistration::operator =(const CourseRegistration& cou
 void CourseRegistration::setStudentId(const char* id) {
 	strcpy_s(this->SId, SIDMAX, id);
 }
-char* CourseRegistration::getStudentId() {
+char* CourseRegistration::getId() {
 	return this->SId;
 }
 void CourseRegistration::setGrade(float grade) {
@@ -51,7 +51,7 @@ char* CourseRegistration::getCourseName() {
 std::ostream& operator << (std::ostream& stream, const CourseRegistration& course) {
 	stream << "Student Id : " << course.SId <<
 		"\nCourse Name : " << course.CourseName <<
-		"\nGrade : " << course.Grade << "\n\n";
+		"\nGrade : " << course.Grade << "\n";
 	return stream;
 }
 
@@ -67,7 +67,7 @@ void checkValid(char *str) {
 }
 
 std::istream& operator >> (std::istream& stream, CourseRegistration& course) {
-	char buffer[10];
+	char buffer[20];
 	std::cout << "Enter student id, or <cr> to end : " << std::flush;
 	stream.getline(buffer, SIDMAX);
 	course.setStudentId(buffer);
@@ -84,8 +84,8 @@ int CourseRegistration::InitBuffer(FixedFieldBuffer& Buffer)
 // initialize a FixedTextBuffer to be used for Persons
 {
 	int result;
-	result = Buffer.AddField(SIDMAX); // SId;
-	result = result && Buffer.AddField(CNAMEMAX); // CourseName;
+	result = Buffer.AddField(SIDMAX-1); // SId;
+	result = result && Buffer.AddField(CNAMEMAX-1); // CourseName;
 	result = result && Buffer.AddField(4); // Grade [5];
 	return result;
 }
@@ -150,35 +150,21 @@ int CourseRegistration::Unpack(IOBuffer& Buffer)
 	return TRUE;
 }
 
+/*
 void getSplittedHalf(const char* str, char* at, char delim) {
 	int i = 0;
 	for (; i < strlen(str); ++i) {
 		if (str[i] == delim) break;
 		at[i] = str[i];
 	}
-}
+	at[i] = 0;
+}*/
 
 char* CourseRegistration::Key() const
 {// produce key as concatenation of Label and IdNum
 	std::ostrstream key;
 	char splitName[CNAMEMAX];
-	getSplittedHalf(CourseName, splitName, ' ');
-	key << SId << splitName << ends;
+	//getSplittedHalf(CourseName, splitName, ' ');
+	key << SId << CourseName << ends;
 	return key.str();
 }
-/*
-ostream& CourseRegistration::PrintLine(ostream& stream)
-{
-	stream.setf(ios::right, ios::adjustfield);
-	stream << studentId << '\t';
-	stream.setf(ios::right, ios::adjustfield);
-	stream << '\t' << setw(6) << courseId << '\t';
-	stream.setf(ios::left, ios::adjustfield);
-	stream << setw(30) << courseName;
-	stream.setf(ios::right, ios::adjustfield);
-	stream << '\t' << numberOfCreditHours;
-	stream.setf(ios::right | ios::fixed, ios::floatfield);
-	stream.precision(2);
-	stream << '\t' << setw(8) << setprecision(2) << grade << endl;
-	return stream;
-}*/

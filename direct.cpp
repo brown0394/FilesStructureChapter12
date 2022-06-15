@@ -4,7 +4,7 @@
 #include "tindbuff.h"
 #include <strstream>
 #include <string>
-const int MaxKeySize = 12;
+const int MaxKeySize = 25;
 Directory::Directory(int maxBucketKeys)
 {
 	Depth = 0; // depth of directory
